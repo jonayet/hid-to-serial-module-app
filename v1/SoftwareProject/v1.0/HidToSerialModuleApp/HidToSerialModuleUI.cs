@@ -17,23 +17,24 @@ namespace HidToSerialModuleApp
 {
     public partial class HidToSerialModuleUI : Form
     {
-        HidInterface hidDevice1 = new HidInterface(0x1FBD, 0x0003);
+        HidInterface hidDevice1;
 
         public HidToSerialModuleUI()
         {
             InitializeComponent();
 
+            hidDevice1 = new HidInterface(0x1FBD, 0x0010);
             hidDevice1.OnDeviceAttached += new EventHandler(hidDevice1_OnDeviceAttached);
             hidDevice1.OnDeviceRemoved += new EventHandler(hidDevice1_OnDeviceRemoved);
             hidDevice1.OnReportReceived += hidDevice1_OnReportReceived;
-            //hidDevice1.CheckDevicePresent(1);
+            hidDevice1.ConnectTargetDevice();
 
             hostTransmissionTypeComboBox.DataSource = Enum.GetNames(typeof (HostTransmisionType));
 
-            //foreach (HIDInfoSet hidInfoSet in HIDDevice.GetDeviceList(8125, 16))
-            //{
-            //    hidDeviceListComboBox.Items.Add(hidInfoSet.ProductString + " - (V:" + hidInfoSet.Vid + ", P:" + hidInfoSet.Pid + ")");
-            //}
+            foreach (HidDevice hidDevice in hidDevice1.GetDeviceList())
+            {
+                hidDeviceListComboBox.Items.Add(hidDevice.ProductName + " - (V:" + hidDevice.VendorID + ", P:" + hidDevice.ProductID + ")");
+            }
         }
 
         void hidDevice1_OnReportReceived(object sender, ReportRecievedEventArgs e)
@@ -90,26 +91,12 @@ namespace HidToSerialModuleApp
 
         void hidDevice1_OnDeviceAttached(object sender, EventArgs e)
         {
-            if (InvokeRequired)
-            {
-                Invoke(new EventHandler(hidDevice1_OnDeviceAttached), new[] {sender, e});
-            }
-            else
-            {
-                deviceConnectedLabel.Text = "Connected";
-            }
+            ThreadHelperClass.SetText(this, deviceConnectedLabel, "Connected");
         }
 
         void hidDevice1_OnDeviceRemoved(object sender, EventArgs e)
         {
-            if (InvokeRequired)
-            {
-                Invoke(new EventHandler(hidDevice1_OnDeviceRemoved), new[] {sender, e});
-            }
-            else
-            {
-                deviceConnectedLabel.Text = "Not Connected";
-            }
+            ThreadHelperClass.SetText(this, deviceConnectedLabel, "Not Connected");
         }
 
         private void sendButton_Click(object sender, EventArgs e)
