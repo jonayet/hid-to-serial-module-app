@@ -23,7 +23,7 @@ namespace HidToSerialModuleApp
         {
             InitializeComponent();
 
-            hidDevice1 = new HidInterface(0x1FBD, 0x0010);
+            hidDevice1 = new HidInterface(0x1FBD, 0x0005);
             hidDevice1.OnDeviceAttached += new EventHandler(hidDevice1_OnDeviceAttached);
             hidDevice1.OnDeviceRemoved += new EventHandler(hidDevice1_OnDeviceRemoved);
             hidDevice1.OnReportReceived += hidDevice1_OnReportReceived;
@@ -31,9 +31,9 @@ namespace HidToSerialModuleApp
 
             hostTransmissionTypeComboBox.DataSource = Enum.GetNames(typeof (HostTransmisionType));
 
-            foreach (HidDevice hidDevice in hidDevice1.GetDeviceList())
+            foreach (HidDevice hidDevice in HidInterface.GetDeviceList())
             {
-                hidDeviceListComboBox.Items.Add(hidDevice.ProductName + " - (V:" + hidDevice.VendorID + ", P:" + hidDevice.ProductID + ")");
+                hidDeviceListComboBox.Items.Add(hidDevice.ProductName + " - (VID: " + hidDevice.VendorID + ", PID: " + hidDevice.ProductID + ")");
             }
         }
 
