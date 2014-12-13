@@ -63,13 +63,14 @@
             this.deviceNoOfRemainingPacketsTextBox = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.hidDeviceListComboBox = new System.Windows.Forms.ComboBox();
+            this.connectButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // deviceConnectedLabel
             // 
-            this.deviceConnectedLabel.Location = new System.Drawing.Point(473, 23);
+            this.deviceConnectedLabel.Location = new System.Drawing.Point(491, 3);
             this.deviceConnectedLabel.Name = "deviceConnectedLabel";
             this.deviceConnectedLabel.Size = new System.Drawing.Size(81, 23);
             this.deviceConnectedLabel.TabIndex = 0;
@@ -126,7 +127,7 @@
             this.groupBox1.Controls.Add(this.hostThisSegmentLengthTextBox);
             this.groupBox1.Controls.Add(this.hostDataTextBox);
             this.groupBox1.Controls.Add(this.sendButton);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Location = new System.Drawing.Point(12, 32);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(560, 287);
             this.groupBox1.TabIndex = 4;
@@ -289,7 +290,6 @@
             this.groupBox2.Controls.Add(this.deviceTransmissionTypeTextBox);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.deviceConnectedLabel);
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.deviceAckByteTextBox);
@@ -298,7 +298,7 @@
             this.groupBox2.Controls.Add(this.deviceThisSegmentLengthTextBox);
             this.groupBox2.Controls.Add(this.deviceNoOfRemainingPacketsTextBox);
             this.groupBox2.Controls.Add(this.label10);
-            this.groupBox2.Location = new System.Drawing.Point(12, 305);
+            this.groupBox2.Location = new System.Drawing.Point(12, 325);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(560, 167);
             this.groupBox2.TabIndex = 5;
@@ -394,19 +394,31 @@
             // 
             this.hidDeviceListComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.hidDeviceListComboBox.FormattingEnabled = true;
-            this.hidDeviceListComboBox.Location = new System.Drawing.Point(54, 294);
+            this.hidDeviceListComboBox.Location = new System.Drawing.Point(12, 5);
             this.hidDeviceListComboBox.Name = "hidDeviceListComboBox";
-            this.hidDeviceListComboBox.Size = new System.Drawing.Size(518, 21);
+            this.hidDeviceListComboBox.Size = new System.Drawing.Size(362, 21);
             this.hidDeviceListComboBox.TabIndex = 20;
+            // 
+            // connectButton
+            // 
+            this.connectButton.Location = new System.Drawing.Point(401, 3);
+            this.connectButton.Name = "connectButton";
+            this.connectButton.Size = new System.Drawing.Size(75, 23);
+            this.connectButton.TabIndex = 20;
+            this.connectButton.Text = "Connect";
+            this.connectButton.UseVisualStyleBackColor = true;
+            this.connectButton.Click += new System.EventHandler(this.connectButton_Click);
             // 
             // HidToSerialModuleUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 484);
+            this.ClientSize = new System.Drawing.Size(584, 499);
+            this.Controls.Add(this.connectButton);
             this.Controls.Add(this.hidDeviceListComboBox);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.deviceConnectedLabel);
             this.Name = "HidToSerialModuleUI";
             this.Text = "HID To Serial Module";
             this.groupBox1.ResumeLayout(false);
@@ -454,6 +466,7 @@
         private System.Windows.Forms.TextBox hostBaudRateIndexTextBox;
         private System.Windows.Forms.TextBox deviceTransmissionTypeTextBox;
         private System.Windows.Forms.ComboBox hidDeviceListComboBox;
+        private System.Windows.Forms.Button connectButton;
     }
 }
 
